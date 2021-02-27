@@ -1,0 +1,1 @@
+python -m PyInstaller --onefile  --windowed  -y --add-data "_sounddevice_data;_sounddevice_data" --add-data "tap.png;."  --icon "tap.ico" --add-data "_soundfile_data;_soundfile_data"  Voice\ Echoer.py

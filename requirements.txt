@@ -1,0 +1,7 @@
+PyQt5
+sounddevice
+soundfile
+notify-py
+keyboard
+pyee
+numpy

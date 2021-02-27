@@ -1,0 +1,1 @@
+python3 -m PyInstaller --windowed --onefile -y --add-data "_sounddevice_data:_sounddevice_data" --add-data "tap.png:." --icon "tap.icns" --add-data "_soundfile_data:_soundfile_data" --osx-bundle-identifier 'com.xyzhang.echo' Voice\ Echoer.py

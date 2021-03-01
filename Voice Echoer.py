@@ -42,7 +42,7 @@ def iconFromBase64(base64):
     return icon
 
 
-ICON = resource_path("tap.png")
+ICON = resource_path("icon.png")
 with open(ICON, "rb") as image_file:
     bs = image_file.read()
     B64_ICON = base64.b64encode(bs)
@@ -95,15 +95,21 @@ if platform == "darwin":
     from Foundation import NSUserNotificationDefaultSoundName
     from optparse import OptionParser
 
+    center = {"value": None}
+
     def send_noti(title, message):
         notification = NSUserNotification.alloc().init()
         notification.setTitle_(title)
         notification.setInformativeText_(message)
-        center = NSUserNotificationCenter.defaultUserNotificationCenter()
-        if center is not None:
-            center.deliverNotification_(notification)
+        if center["value"] is not None:
+            center["value"].deliverNotification_(notification)
         else:
-            print("fail to get notification center", title, message)
+            _ = NSUserNotificationCenter.defaultUserNotificationCenter()
+            if _ is not None:
+                center["value"] = _
+                center["value"].deliverNotification_(notification)
+            else:
+                print("fail to get notification center", title, message)
 
     def send_folder_noti(msg, title=""):
         send_noti(title or "Save Folder Changed", msg)
